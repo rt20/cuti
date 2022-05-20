@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Models\Cuti;
+use App\Models\User;
 
 class CutiController extends Controller
 {
@@ -14,11 +16,12 @@ class CutiController extends Controller
      */
     public function index()
     {
-        $cuti = Cuti::paginate(10);
+        // $cuti = Cuti::paginate(10);
+        $data = DB::table('users')
+        ->join('cutis','users.id','=','cutis.user_id')
+        ->paginate(10);
        
-        return view ('cutis.index',[
-            'cuti' => $cuti
-        ]);
+        return view ('cutis.index', compact('data'));
     }
 
     /**
@@ -28,7 +31,10 @@ class CutiController extends Controller
      */
     public function create()
     {
-        return view('cutis.create');
+        $users = User::all();
+        return view('cutis.create', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -39,7 +45,11 @@ class CutiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        
+        Cuti::create($data);
+
+        return redirect()->route('cutis.index');
     }
 
     /**

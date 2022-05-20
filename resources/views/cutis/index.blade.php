@@ -33,14 +33,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    @forelse($cuti as $item)
+                    @forelse($data as $item)
                         <tr>
-                            <td>{{ $item->user_id }}</td>
+                            <td>{{ $item->name }}</td>
                             <td>{{ $item->mulaicuti }}</td>
                             <td>{{ $item->akhircuti }}</td>
                           
                             <td class="border px-6 py- text-center">
-                                    <form action="{{ route('users.destroy', $item->id) }}" method="POST" class="inline-block">
+                                    <form action="{{ route('cutis.destroy', $item->id) }}" method="POST" class="inline-block">
                                         {!! method_field('delete') . csrf_field() !!}
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ?')">
                                             Hapus

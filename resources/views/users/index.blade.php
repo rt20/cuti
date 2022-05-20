@@ -27,7 +27,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Jabatan</th>
                             <th>Email</th>
                             <th>No HP</th>
